@@ -106,6 +106,7 @@ public class KalicMarkoA1Q1 implements GLEventListener
 		drawSpiral( gl );
 	}
 
+	//TODO: Comment this
 	private void drawSquares( GL2 gl )
 	{
 		float x = 0.0f;
@@ -163,6 +164,7 @@ public class KalicMarkoA1Q1 implements GLEventListener
 		}
 	}
 
+	//TODO: Comment this
 	private void drawSpiral( GL2 gl )
 	{
 		float x = 0.0f;
