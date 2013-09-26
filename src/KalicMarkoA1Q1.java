@@ -1,5 +1,3 @@
-//test2
-
 import java.awt.Frame;
 import java.awt.event.*;
 
@@ -11,10 +9,10 @@ public class KalicMarkoA1Q1 implements GLEventListener
 	public static final boolean TRACE = true;
 
 	public static final String WINDOW_TITLE = "A1Q1: Marko Kalic";
-	
+
 	public static final int INITIAL_WIDTH = 640;
 	public static final int INITIAL_HEIGHT = 640;
-	
+
 	public static final float PHI = 1.59f;
 	public static final float N = 3.05f;
 	public static final float A = 0.0025f;
@@ -85,10 +83,10 @@ public class KalicMarkoA1Q1 implements GLEventListener
 		// TODO: choose your own background colour, and uncomment the lines
 		// below to turn on line antialiasing
 		gl.glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
-		// gl.glHint(GL2.GL_LINE_SMOOTH_HINT, GL2.GL_NICEST);
-		// gl.glEnable(GL2.GL_LINE_SMOOTH);
-		// gl.glEnable(GL2.GL_BLEND);
-		// gl.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
+		gl.glHint( GL2.GL_LINE_SMOOTH_HINT, GL2.GL_NICEST );
+		gl.glEnable( GL2.GL_LINE_SMOOTH );
+		gl.glEnable( GL2.GL_BLEND );
+		gl.glBlendFunc( GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA );
 	}
 
 	@Override
@@ -102,9 +100,9 @@ public class KalicMarkoA1Q1 implements GLEventListener
 		gl.glClear( GL2.GL_COLOR_BUFFER_BIT | GL2.GL_DEPTH_BUFFER_BIT );
 
 		// TODO: your drawing code goes here
-		
+
 		drawSquares( gl );
-		
+
 		drawSpiral( gl );
 	}
 
@@ -117,29 +115,29 @@ public class KalicMarkoA1Q1 implements GLEventListener
 		float r;
 		float redLevel = 0.0f;
 		float greenLevel = 0.0f;
-		
+
 		boolean swap = true;
-		
+
 		for ( float theta = 0.0f; theta <= N * 2.0f * Math.PI; theta += PHI )
 		{
 			r = (float)( A * Math.exp( B * theta ) );
-			
+
 			if ( !swap )
 			{
 				x = (float)( r * Math.cos( theta ) );
 				y = (float)( r * Math.sin( theta ) );
-				
+
 				gl.glColor3f( redLevel, greenLevel, 0.0f );
 				gl.glBegin( GL2.GL_QUADS );
-				
-					gl.glVertex2f( x, y );
-					gl.glVertex2f( x2, y );
-					gl.glVertex2f( x2, y2 );
-					gl.glVertex2f( x, y2 );
-				
+
+				gl.glVertex2f( x, y );
+				gl.glVertex2f( x2, y );
+				gl.glVertex2f( x2, y2 );
+				gl.glVertex2f( x, y2 );
+
 				gl.glEnd( );
 				gl.glFlush( );
-				
+
 				greenLevel += 0.15f;
 				swap = !swap;
 			}
@@ -147,44 +145,44 @@ public class KalicMarkoA1Q1 implements GLEventListener
 			{
 				x2 = (float)( r * Math.cos( theta ) );
 				y2 = (float)( r * Math.sin( theta ) );
-				
+
 				gl.glColor3f( redLevel, greenLevel, 0.0f );
 				gl.glBegin( GL2.GL_QUADS );
-				
-					gl.glVertex2f( x, y );
-					gl.glVertex2f( x2, y );
-					gl.glVertex2f( x2, y2 );
-					gl.glVertex2f( x, y2 );
-				
+
+				gl.glVertex2f( x, y );
+				gl.glVertex2f( x2, y );
+				gl.glVertex2f( x2, y2 );
+				gl.glVertex2f( x, y2 );
+
 				gl.glEnd( );
 				gl.glFlush( );
-				
+
 				redLevel += 0.15f;
 				swap = !swap;
 			}
 		}
 	}
-	
+
 	private void drawSpiral( GL2 gl )
 	{
 		float x = 0.0f;
 		float y = 0.0f;
 		float r = 0.0f;
-		
+
 		gl.glColor3f( 0.0f, 0.0f, 1.0f );
 		gl.glLineWidth( 2.0f );
 		gl.glBegin( GL2.GL_LINE_STRIP );
-		
+
 		for ( float theta = 0.0f; theta < N * 2.0f * Math.PI; theta += 0.109f )
 		{
 			r = (float)( A * Math.exp( B * theta ) );
-			
+
 			x = (float)( r * Math.cos( theta ) );
 			y = (float)( r * Math.sin( theta ) );
-			
+
 			gl.glVertex2f( x, y );
 		}
-		
+
 		gl.glEnd( );
 		gl.glFlush( );
 	}
